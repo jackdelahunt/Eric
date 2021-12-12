@@ -5,13 +5,19 @@
 template <typename T>
 class dyn_c_array {
 public:
-    int length;
-    int capacity;
+    size_t length;
+    size_t capacity;
     T* data;
 
     dyn_c_array(){
         length = 0;
-        capacity = 1;
+        capacity = 10;
+        data = (T *)malloc(capacity * sizeof(T));
+    }
+
+    dyn_c_array(size_t initial_capacity){
+        length = 0;
+        capacity = initial_capacity;
         data = (T *)malloc(capacity * sizeof(T));
     }
 

@@ -6,8 +6,9 @@
 namespace Eric {
     VirtualMachine::VirtualMachine() {
         instruction_ptr = 0;
-        registers = static_c_array<int64_t>();
+        registers = Registers();
         byteCode = dyn_c_array<uint8_t>();
+        heap = Heap();
     }
 
     void VirtualMachine::process() {
@@ -18,6 +19,9 @@ namespace Eric {
             case LOAD:
                 Operations::load(*this);
                 break;
+            case SET_VAR:
+                Operations::set_var(*this);
+                break;
         }
         instruction_ptr++;
     }
@@ -27,9 +31,7 @@ namespace Eric {
     }
 
     void VirtualMachine::print_state() {
-        for(int i = 0; i < registers.length; i++) {
-            std::cout << "[" << i << "] : " << registers.at(i) << "\n";
-        }
+        registers.print_state();
     }
 }
 
