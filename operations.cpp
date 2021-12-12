@@ -18,4 +18,10 @@ namespace Eric::Operations {
         auto address = vm.heap.alloc<uint8_t >(&value);
         vm.registers.M(address);
     }
+
+    void get_var(VirtualMachine& vm) {
+        auto r = vm.next();
+        // TODO: can only load address that is already in memory register
+        vm.registers.set_data_at(r, vm.heap.lookup(vm.registers.M()));
+    }
 }

@@ -2,6 +2,8 @@
 #include "c_array.h"
 #include <string.h>
 
+#define PAGE_SIZE sizeof(u_int64_t)
+
 class Heap {
 public:
     Heap();
@@ -9,10 +11,13 @@ public:
     template<typename T>
     u_int16_t alloc(T* t) {
         auto start_location = heap_ptr;
-        auto end_location = heap_ptr + sizeof(T);
-        memcpy(&data[start_location], t, sizeof(T));
-        heap_ptr = end_location;
+        memcpy(&data[start_location], t, PAGE_SIZE);
+        heap_ptr += PAGE_SIZE;
         return start_location;
+    }
+
+    u_int64_t lookup(u_int16_t address) {
+        return data[address];
     }
 
 private:

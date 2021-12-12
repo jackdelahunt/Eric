@@ -9,26 +9,26 @@
 namespace Eric {
 
     struct Registers {
-        int64_t data_registers[3];
+        uint64_t data_registers[3];
         uint16_t memory_register;
 
-        int64_t get_data_at(size_t index) {
+        uint64_t get_data_at(size_t index) {
             return data_registers[index];
         }
 
-        void set_data_at(size_t index, int64_t value) {
+        void set_data_at(size_t index, uint64_t value) {
             data_registers[index] = value;
         }
 
-        int64_t A() {
+        uint64_t A() {
             return data_registers[0];
         }
 
-        int64_t B() {
+        uint64_t B() {
             return data_registers[1];
         }
 
-        int64_t C() {
+        uint64_t C() {
             return data_registers[2];
         }
 
@@ -36,15 +36,15 @@ namespace Eric {
             return memory_register;
         }
 
-        void A(int64_t value) {
+        void A(uint64_t value) {
             data_registers[0] = value;
         }
 
-        void B(int64_t value) {
+        void B(uint64_t value) {
             data_registers[1] = value;
         }
 
-        void C(int64_t value) {
+        void C(uint64_t value) {
             data_registers[2] = value;
         }
 
