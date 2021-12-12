@@ -25,6 +25,9 @@ namespace Eric {
             case GET_VAR:
                 Operations::get_var(*this);
                 break;
+            case MOV:
+                Operations::move(*this);
+                break;
         }
         instruction_ptr++;
     }

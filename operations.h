@@ -6,4 +6,5 @@ namespace Eric::Operations {
     void load(VirtualMachine& vm);
     void set_var(VirtualMachine& vm);
     void get_var(VirtualMachine& vm);
+    void move(VirtualMachine& vm);
 }

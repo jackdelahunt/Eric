@@ -24,4 +24,10 @@ namespace Eric::Operations {
         // TODO: can only load address that is already in memory register
         vm.registers.set_data_at(r, vm.heap.lookup(vm.registers.M()));
     }
+
+    void move(VirtualMachine& vm) {
+        auto r1 = vm.next();
+        auto r2 = vm.next();
+        vm.registers.set_data_at(r1, vm.registers.get_data_at(r2));
+    }
 }
