@@ -24,17 +24,17 @@ namespace Eric {
 
     void VirtualMachine::process() {
         switch (byteCode[instruction_ptr]) {
+            case ICONST:
+                iconst_operation(); break;
             case IADD:
                 iadd_operation(); break;
-            case PUSH:
-                push_operation(); break;
             case PRINT:
                 print_operation(); break;
         }
         instruction_ptr++;
     }
 
-    void VirtualMachine::push_operation() {
+    void VirtualMachine::iconst_operation() {
         stack_push(next());
     }
 

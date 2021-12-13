@@ -22,7 +22,7 @@ namespace Eric {
         VirtualMachine();
         void run();
         void appendInstruction(int32_t instruction);
-        void push_operation();
+        void iconst_operation();
         void iadd_operation();
         void print_operation();
         void print_state();
