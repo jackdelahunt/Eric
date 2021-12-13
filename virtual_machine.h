@@ -24,6 +24,7 @@ namespace Eric {
         void appendInstruction(int32_t instruction);
         void push_operation();
         void iadd_operation();
+        void print_operation();
         void print_state();
 
     private:

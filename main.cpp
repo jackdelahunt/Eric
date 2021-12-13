@@ -9,9 +9,9 @@ int main() {
     vm.appendInstruction(Eric::PUSH);
     vm.appendInstruction(20);
     vm.appendInstruction(Eric::IADD);
+    vm.appendInstruction(Eric::PRINT);
     vm.appendInstruction(Eric::HALT);
 
     vm.run();
-    vm.print_state();
     return 0;
 }

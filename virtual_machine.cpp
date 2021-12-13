@@ -28,6 +28,8 @@ namespace Eric {
                 iadd_operation(); break;
             case PUSH:
                 push_operation(); break;
+            case PRINT:
+                print_operation(); break;
         }
         instruction_ptr++;
     }
@@ -38,6 +40,10 @@ namespace Eric {
 
     void VirtualMachine::iadd_operation() {
         stack_push(stack_pop() + stack_pop());
+    }
+
+    void VirtualMachine::print_operation() {
+        std::cout << stack_pop();
     }
 
     void VirtualMachine::print_state() {
