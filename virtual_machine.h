@@ -4,73 +4,33 @@
 #include <inttypes.h>
 #include "c_array.h"
 #include "op_code.h"
-#include "heap.h"
 
 namespace Eric {
 
-    struct Registers {
-        uint64_t data_registers[3];
-        uint16_t memory_register;
-
-        uint64_t get_data_at(size_t index) {
-            return data_registers[index];
-        }
-
-        void set_data_at(size_t index, uint64_t value) {
-            data_registers[index] = value;
-        }
-
-        uint64_t A() {
-            return data_registers[0];
-        }
-
-        uint64_t B() {
-            return data_registers[1];
-        }
-
-        uint64_t C() {
-            return data_registers[2];
-        }
-
-        uint16_t M() {
-            return memory_register;
-        }
-
-        void A(uint64_t value) {
-            data_registers[0] = value;
-        }
-
-        void B(uint64_t value) {
-            data_registers[1] = value;
-        }
-
-        void C(uint64_t value) {
-            data_registers[2] = value;
-        }
-
-        void M(uint16_t value) {
-            memory_register = value;
-        }
-
-        void print_state() {
-            std::cout << "[ A] : " << A() << "\n";
-            std::cout << "[ B] : " << B() << "\n";
-            std::cout << "[ C] : " << C() << "\n";
-            std::cout << "[ M] : " << M() << "\n";
-        }
-    };
-
     class VirtualMachine {
     public:
-        size_t instruction_ptr;
-        Registers registers;
-        dyn_c_array<uint8_t> byteCode;
-        Heap heap;
+        int32_t r0;
+        int32_t r1;
+
+        int32_t instruction_ptr;
+        int32_t stack_ptr;
+        int32_t frame_ptr;
+
+        int32_t stack[128];
+        int32_t byteCode[1024];
 
         VirtualMachine();
-        void process();
-        uint8_t next();
+        void run();
+        void appendInstruction(int32_t instruction);
+        void push_operation();
+        void iadd_operation();
         void print_state();
+
+    private:
+        int32_t byteCode_length;
+        void process();
+        int32_t next();
+        void stack_push(int32_t value);
     };
 }
 
