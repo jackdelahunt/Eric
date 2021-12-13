@@ -8,6 +8,7 @@ namespace Eric::Generator {
         instructions = {
                 Instruction("iconst", VM::ICONST, 1),
                 Instruction("iadd", VM::IADD, 0),
+                Instruction("if_icmp_eq", VM::IF_ICMP_EQ, 1),
                 Instruction("print", VM::PRINT, 0),
                 Instruction("halt", VM::HALT, 0)
         };

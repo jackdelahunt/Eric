@@ -23,23 +23,31 @@ namespace Eric::VM {
     }
 
     void VirtualMachine::process() {
-        switch (byteCode[instruction_ptr]) {
+        switch (byteCode[instruction_ptr++]) {
             case ICONST:
                 iconst_operation(); break;
             case IADD:
                 iadd_operation(); break;
+            case IF_ICMP_EQ:
+                if_icmp_eq_operation(); break;
             case PRINT:
                 print_operation(); break;
         }
-        instruction_ptr++;
     }
 
     void VirtualMachine::iconst_operation() {
-        stack_push(next());
+        stack_push(current_byte());
     }
 
     void VirtualMachine::iadd_operation() {
         stack_push(stack_pop() + stack_pop());
+    }
+
+    void VirtualMachine::if_icmp_eq_operation() {
+        auto branch_to = current_byte();
+        if(stack_pop() == stack_pop()) {
+            instruction_ptr = branch_to;
+        }
     }
 
     void VirtualMachine::print_operation() {
@@ -62,8 +70,8 @@ namespace Eric::VM {
         }
     }
 
-    int32_t VirtualMachine::next() {
-        return byteCode[++instruction_ptr];
+    int32_t VirtualMachine::current_byte() {
+        return byteCode[instruction_ptr++];
     }
 
     int32_t VirtualMachine::stack_pop() {

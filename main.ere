@@ -1,7 +1,6 @@
-iconst 100
-iconst 200
 iconst 300
-iadd
-iadd
+iconst 1
+iconst 1
+if_icmp_eq 9
 print
 halt
