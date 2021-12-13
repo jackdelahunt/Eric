@@ -1,17 +1,11 @@
 #include <iostream>
-#include "virtual_machine.h"
-#include "op_code.h"
+#include "vm/virtual_machine.h"
+#include "generator/generator.h"
 
 int main() {
-    auto vm = Eric::VirtualMachine();
-    vm.appendInstruction(Eric::ICONST);
-    vm.appendInstruction(10);
-    vm.appendInstruction(Eric::ICONST);
-    vm.appendInstruction(20);
-    vm.appendInstruction(Eric::IADD);
-    vm.appendInstruction(Eric::PRINT);
-    vm.appendInstruction(Eric::HALT);
-
+    auto vm = Eric::VM::VirtualMachine();
+    auto gen = Eric::Generator::Generator();
+    gen.generate_from_file("../main.ere", vm);
     vm.run();
     return 0;
 }

@@ -2,7 +2,7 @@
 #include "virtual_machine.h"
 #include "op_code.h"
 
-namespace Eric {
+namespace Eric::VM {
     VirtualMachine::VirtualMachine() {
         r0 = 0;
         r1 = 0;

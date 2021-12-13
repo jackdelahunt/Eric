@@ -1,10 +1,10 @@
 #pragma once
 
-namespace Eric {
+namespace Eric::VM {
     enum OPCode : int32_t {
         ICONST = 1,
         IADD = 2,
-        HALT = 3,
-        PRINT = 4
+        PRINT = 3,
+        HALT = 4,
     };
 }

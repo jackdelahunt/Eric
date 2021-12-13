@@ -5,8 +5,9 @@ set(CMAKE_CXX_STANDARD 20)
 
 add_executable(Eric
         main.cpp
-        op_code.h
-        c_array.h
-        exception.h
-        virtual_machine.h virtual_machine.cpp
+        vm/op_code.h
+        vm/virtual_machine.h vm/virtual_machine.cpp
+
+        generator/generator.h generator/generator.cpp
+        generator/instruction.h generator/instruction.cpp
         )

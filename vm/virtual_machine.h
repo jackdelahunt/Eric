@@ -2,10 +2,9 @@
 #include <cstddef>
 #include <iostream>
 #include <inttypes.h>
-#include "c_array.h"
 #include "op_code.h"
 
-namespace Eric {
+namespace Eric::VM {
 
     class VirtualMachine {
     public:

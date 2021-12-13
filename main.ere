@@ -1,0 +1,7 @@
+iconst 100
+iconst 200
+iconst 300
+iadd
+iadd
+print
+halt
