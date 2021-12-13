@@ -9,7 +9,11 @@ namespace Eric::Generator {
                 Instruction("iconst", VM::ICONST, 1),
                 Instruction("iadd", VM::IADD, 0),
                 Instruction("if_icmp_eq", VM::IF_ICMP_EQ, 1),
+                Instruction("call", VM::CALL, 2),
+                Instruction("ret", VM::RET, 1),
+                Instruction("local", VM::LOCAL, 1),
                 Instruction("print", VM::PRINT, 0),
+                Instruction("no_op", VM::NO_OP, 0),
                 Instruction("halt", VM::HALT, 0)
         };
     }
@@ -32,13 +36,19 @@ namespace Eric::Generator {
     void Generator::parse_line(std::string& line, VM::VirtualMachine& virtualMachine) {
         std::vector<std::string> words;
         tokenize(line, ' ', words);
+        bool found = false;
         for(auto& instruction : instructions) {
             if (instruction.name == words[0] && instruction.argCount == words.size() - 1) {
                 virtualMachine.appendInstruction(instruction.opCode);
                 for(int c = 1; c < words.size(); c++) {
                     virtualMachine.appendInstruction(std::stoi(words[c]));
                 }
+                found = true;
             }
+        }
+
+        if(!found) {
+            std::cout << "Could not find instruction " << words[0] << " with arg count " << words.size() - 1 << "\n";
         }
     }
 

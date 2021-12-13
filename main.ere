@@ -1,6 +1,11 @@
-iconst 300
-iconst 1
-iconst 1
-if_icmp_eq 9
-print
+call 7 0
+call 7 0
 halt
+
+iconst 10
+iconst 20
+iadd
+print
+ret 0
+
+

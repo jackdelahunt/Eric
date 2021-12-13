@@ -23,6 +23,9 @@ namespace Eric::VM {
         void appendInstruction(int32_t instruction);
         void iconst_operation();
         void if_icmp_eq_operation();
+        void call_operation();
+        void ret_operation();
+        void local_operation();
         void iadd_operation();
         void print_operation();
         void print_state();
