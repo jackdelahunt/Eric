@@ -30,6 +30,7 @@ namespace Eric {
         int32_t byteCode_length;
         void process();
         int32_t next();
+        int32_t stack_pop();
         void stack_push(int32_t value);
     };
 }

@@ -33,12 +33,11 @@ namespace Eric {
     }
 
     void VirtualMachine::push_operation() {
-        auto n = next();
-        stack_push(n);
+        stack_push(next());
     }
 
     void VirtualMachine::iadd_operation() {
-
+        stack_push(stack_pop() + stack_pop());
     }
 
     void VirtualMachine::print_state() {
@@ -59,6 +58,10 @@ namespace Eric {
 
     int32_t VirtualMachine::next() {
         return byteCode[++instruction_ptr];
+    }
+
+    int32_t VirtualMachine::stack_pop() {
+        return stack[stack_ptr--];
     }
 
     void VirtualMachine::stack_push(int32_t value) {

@@ -5,7 +5,10 @@
 int main() {
     auto vm = Eric::VirtualMachine();
     vm.appendInstruction(Eric::PUSH);
-    vm.appendInstruction(69);
+    vm.appendInstruction(10);
+    vm.appendInstruction(Eric::PUSH);
+    vm.appendInstruction(20);
+    vm.appendInstruction(Eric::IADD);
     vm.appendInstruction(Eric::HALT);
 
     vm.run();
