@@ -1,6 +1,6 @@
 #pragma once
 
-#define IS_DEBUG true
+#define IS_DEBUG false
 
 #if IS_DEBUG
 #define DEBUG(str) \

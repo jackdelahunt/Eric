@@ -11,10 +11,12 @@ namespace Eric::Generator {
                 Instruction("if_icmp_eq", VM::IF_ICMP_EQ, 1),
                 Instruction("call", VM::CALL, 2),
                 Instruction("call_to", VM::CALL_TO, 2),
-                Instruction("ret", VM::RET, 1),
+                Instruction("ret", VM::RET, 0),
                 Instruction("local", VM::LOCAL, 1),
                 Instruction("print", VM::PRINT, 0),
                 Instruction("no_op", VM::NO_OP, 0),
+                Instruction("rcpy", VM::RCPY, 1),
+                Instruction("scpy", VM::SCPY, 1),
                 Instruction("halt", VM::HALT, 0)
         };
     }

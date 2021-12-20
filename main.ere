@@ -1,11 +1,11 @@
 iconst 100
-call_to 1 1
+call_to 4 1
+rcpy 0
+print
 halt
 
 local 0
-iconst 10
+iconst 200
 iadd
-print
-ret 0
-
-
+scpy 0
+ret

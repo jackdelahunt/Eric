@@ -11,6 +11,8 @@ namespace Eric::VM {
         RET             = -7,
         PRINT           = -8,
         NO_OP           = -9,
-        HALT            = -10,
+        RCPY            = -10,
+        SCPY            = -11,
+        HALT            = -12,
     };
 }

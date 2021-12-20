@@ -29,6 +29,8 @@ namespace Eric::VM {
         void local_operation();
         void iadd_operation();
         void print_operation();
+        void rcpy_operation();
+        void scpy_operation();
         void print_state();
 
     private:

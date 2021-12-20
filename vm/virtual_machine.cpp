@@ -65,6 +65,14 @@ namespace Eric::VM {
             case NO_OP:
                 DEBUG("running :: no_op")
                 break;
+            case RCPY:
+                rcpy_operation();
+                DEBUG("running :: rcpy")
+                break;
+            case SCPY:
+                scpy_operation();
+                DEBUG("running :: scpy")
+                break;
         }
     }
 
@@ -106,11 +114,9 @@ namespace Eric::VM {
     }
 
     void VirtualMachine::ret_operation() {
-        auto return_value = current_byte();
         instruction_ptr = stack_pop();  // return to function call
         frame_ptr = stack_pop();        // return frame to calling frame
         stack_ptr -= stack_pop();       // pop args from stack
-        stack_push(return_value);       // push return value
     }
 
     void VirtualMachine::local_operation() {
@@ -122,6 +128,30 @@ namespace Eric::VM {
 
     void VirtualMachine::print_operation() {
         std::cout << stack_pop();
+    }
+
+    void VirtualMachine::rcpy_operation() {
+        auto reg = current_byte();
+        switch (reg) {
+            case 0:
+                stack_push(r0); break;
+            case 1:
+                stack_push(r1); break;
+            default:
+                throw std::exception();
+        }
+    }
+
+    void VirtualMachine::scpy_operation() {
+        auto reg = current_byte();
+        switch (reg) {
+            case 0:
+                r0 = stack_pop(); break;
+            case 1:
+                r1 = stack_pop(); break;
+            default:
+                throw std::exception();
+        }
     }
 
     void VirtualMachine::print_state() {
