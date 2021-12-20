@@ -1,9 +1,9 @@
-call 7 0
-call 7 0
+iconst 100
+call_to 1 1
 halt
 
+local 0
 iconst 10
-iconst 20
 iadd
 print
 ret 0

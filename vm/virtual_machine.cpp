@@ -15,6 +15,7 @@ namespace Eric::VM {
     void VirtualMachine::run() {
         while (byteCode[instruction_ptr] != HALT || instruction_ptr >= byteCode_length) {
             process();
+            continue;
         }
     }
 
@@ -24,7 +25,7 @@ namespace Eric::VM {
 
     void VirtualMachine::process() {
         auto instruction = byteCode[instruction_ptr++];
-        if(instruction > 0) {
+        if(instruction >= 0) {
             std::cout << "FETCHED NON OP CODE\n";
             print_state();
         }
@@ -37,6 +38,8 @@ namespace Eric::VM {
                 if_icmp_eq_operation(); break;
             case CALL:
                 call_operation(); break;
+            case CALL_TO:
+                call_to_operation(); break;
             case RET:
                 ret_operation(); break;
             case LOCAL:
@@ -72,6 +75,16 @@ namespace Eric::VM {
         stack_push(instruction_ptr);// save where the instruction ptr is
         frame_ptr = stack_ptr;      // set local calls to be from current stack
         instruction_ptr = address;  // jump to function
+    }
+
+    void VirtualMachine::call_to_operation() {
+        auto offset = current_byte();
+        auto nArgs = current_byte();
+        stack_push(nArgs);          // save the arg count
+        stack_push(frame_ptr);      // save the frame ptr
+        stack_push(instruction_ptr);// save where the instruction ptr is
+        frame_ptr = stack_ptr;      // set local calls to be from current stack
+        instruction_ptr += offset;  // jump to function
     }
 
     void VirtualMachine::ret_operation() {

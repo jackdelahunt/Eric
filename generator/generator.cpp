@@ -10,6 +10,7 @@ namespace Eric::Generator {
                 Instruction("iadd", VM::IADD, 0),
                 Instruction("if_icmp_eq", VM::IF_ICMP_EQ, 1),
                 Instruction("call", VM::CALL, 2),
+                Instruction("call_to", VM::CALL_TO, 2),
                 Instruction("ret", VM::RET, 1),
                 Instruction("local", VM::LOCAL, 1),
                 Instruction("print", VM::PRINT, 0),

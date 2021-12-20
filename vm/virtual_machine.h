@@ -24,6 +24,7 @@ namespace Eric::VM {
         void iconst_operation();
         void if_icmp_eq_operation();
         void call_operation();
+        void call_to_operation();
         void ret_operation();
         void local_operation();
         void iadd_operation();
