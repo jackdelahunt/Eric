@@ -1,6 +1,7 @@
 #include <iostream>
 #include "virtual_machine.h"
 #include "op_code.h"
+#include "debug.h"
 
 namespace Eric::VM {
     VirtualMachine::VirtualMachine() {
@@ -15,7 +16,6 @@ namespace Eric::VM {
     void VirtualMachine::run() {
         while (byteCode[instruction_ptr] != HALT || instruction_ptr >= byteCode_length) {
             process();
-            continue;
         }
     }
 
@@ -31,22 +31,40 @@ namespace Eric::VM {
         }
         switch (instruction) {
             case ICONST:
-                iconst_operation(); break;
+                iconst_operation();
+                DEBUG("running :: iconst")
+                break;
             case IADD:
-                iadd_operation(); break;
+                iadd_operation();
+                DEBUG("running :: iadd")
+                break;
             case IF_ICMP_EQ:
-                if_icmp_eq_operation(); break;
+                if_icmp_eq_operation();
+                DEBUG("running :: if_icmp_eq")
+                break;
             case CALL:
-                call_operation(); break;
+                call_operation();
+                DEBUG("running :: call")
+                break;
             case CALL_TO:
-                call_to_operation(); break;
+                call_to_operation();
+                DEBUG("running :: call_to")
+                break;
             case RET:
-                ret_operation(); break;
+                ret_operation();
+                DEBUG("running :: ret")
+                break;
             case LOCAL:
-                local_operation(); break;
+                local_operation();
+                DEBUG("running :: local")
+                break;
             case PRINT:
-                print_operation(); break;
-            case NO_OP: break;
+                print_operation();
+                DEBUG("running :: print")
+                break;
+            case NO_OP:
+                DEBUG("running :: no_op")
+                break;
         }
     }
 

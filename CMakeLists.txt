@@ -7,6 +7,7 @@ add_executable(Eric
         main.cpp
         vm/op_code.h
         vm/virtual_machine.h vm/virtual_machine.cpp
+        vm/debug.h
 
         generator/generator.h generator/generator.cpp
         generator/instruction.h generator/instruction.cpp
